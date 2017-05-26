@@ -69,18 +69,34 @@ class ViewController: UIViewController,UIScrollViewDelegate {
         self.pageOneView = UIView(frame: CGRect(x: 0, y: 0, width: screenW, height: screenH * 2))
         self.pageOneView?.backgroundColor = UIColor.cyan
         self.hScrollView?.addSubview(self.pageOneView!)
+        let oneLabel = UILabel(frame: CGRect(x: 0, y: screenH * 2 - 30, width: screenW, height: 30))
+        oneLabel.text = "page one label"
+        oneLabel.textAlignment = .center
+        self.pageOneView?.addSubview(oneLabel)
         
         self.pageTwoView = UIView(frame: CGRect(x: screenW, y: 0, width: screenW, height: screenH))
         self.pageTwoView?.backgroundColor = UIColor.orange
         self.hScrollView?.addSubview(self.pageTwoView!)
+        let TwoLabel = UILabel(frame: CGRect(x: 0, y: screenH - 30, width: screenW, height: 30))
+        TwoLabel.text = "page two label"
+        TwoLabel.textAlignment = .center
+        self.pageTwoView?.addSubview(TwoLabel)
         
         self.pageThreeView = UIView(frame: CGRect(x: screenW * 2, y: 0, width: screenW, height: screenH * 1.5))
         self.pageThreeView?.backgroundColor = UIColor.yellow
         self.hScrollView?.addSubview(self.pageThreeView!)
+        let threeLabel = UILabel(frame: CGRect(x: 0, y: screenH * 1.5 - 30, width: screenW, height: 30))
+        threeLabel.text = "page three label"
+        threeLabel.textAlignment = .center
+        self.pageThreeView?.addSubview(threeLabel)
         
         self.pageFourView = UIView(frame: CGRect(x: screenW * 3, y: 0, width: screenW, height: screenH * 3))
         self.pageFourView?.backgroundColor = UIColor.purple
         self.hScrollView?.addSubview(self.pageFourView!)
+        let fourLabel = UILabel(frame: CGRect(x: 0, y: screenH * 3 - 30, width: screenW, height: 30))
+        fourLabel.text = "page four label"
+        fourLabel.textAlignment = .center
+        self.pageFourView?.addSubview(fourLabel)
         
         let hScrollY : CGFloat = headH + 10 + tabH
         self.hScrollView?.frame = CGRect(x: 0, y: hScrollY, width: screenW, height: (self.pageOneView?.frame.size.height)!)
