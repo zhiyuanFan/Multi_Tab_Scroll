@@ -40,13 +40,11 @@ class PentagonView : UIView {
        
         let context = UIGraphicsGetCurrentContext()
         
-        drawValueArea(context: context!)
         
         drawPentagon(context: context!)
-        context?.setStrokeColor(UIColor.gray.cgColor)
-        context?.setLineWidth(1.0)
-        context?.drawPath(using: CGPathDrawingMode.stroke)
         setupAbilityViews()
+        
+        drawValueArea(context: context!)
     }
     
     //创建顶点数组,有序(顺时针方向)
@@ -76,8 +74,15 @@ class PentagonView : UIView {
         context.move(to: self.pointArray[0])
         drawLine(context: context, pointArray: self.pointArray, fromCenter: false)
         context.closePath()
+        context.setStrokeColor(UIColor.clear.cgColor)
+        context.setFillColor(UIColor.white.cgColor)
+        context.setLineWidth(1.0)
+        context.drawPath(using: CGPathDrawingMode.fillStroke)
         
         drawInnerLine(context: context)
+        context.setStrokeColor(UIColor.lightGray.cgColor)
+        context.setLineWidth(1.0)
+        context.drawPath(using: CGPathDrawingMode.stroke)
     }
     
     //画五边形内部线段
@@ -85,6 +90,7 @@ class PentagonView : UIView {
         drawLine(context: context, pointArray: self.pointArray, fromCenter: true)
     }
     
+    //画评价值区域
     func drawValueArea(context: CGContext) {
         context.saveGState()
 
@@ -94,7 +100,8 @@ class PentagonView : UIView {
         drawLine(context: context, pointArray: valuePointArray, fromCenter: false)
         context.closePath()
         context.setStrokeColor(UIColor.cyan.cgColor)
-        context.setFillColor(UIColor.cyan.cgColor)
+        let fillColor = UIColor(red: 0, green: 1.0, blue: 1.0, alpha: 0.3)
+        context.setFillColor(fillColor.cgColor)
         context.drawPath(using: CGPathDrawingMode.fillStroke)
         
         context.restoreGState()
@@ -110,6 +117,8 @@ class PentagonView : UIView {
                 context.addLine(to: point)
             }
         }
+        
+        
     }
     
     //设置评分项

@@ -74,7 +74,7 @@ class ViewController: UIViewController,UIScrollViewDelegate {
         self.pageOneView?.addSubview(oneLabel)
         
         self.pageTwoView = PentagonView(frame: CGRect(x: screenW, y: 0, width: screenW, height: screenH), radius: 100)
-        self.pageTwoView?.backgroundColor = UIColor.white
+        self.pageTwoView?.backgroundColor = UIColor(red: 240.0/255.0, green: 240.0/255.0, blue: 240.0/255.0, alpha: 1)
         self.hScrollView?.addSubview(self.pageTwoView!)
         let TwoLabel = UILabel(frame: CGRect(x: 0, y: screenH - 30, width: screenW, height: 30))
         TwoLabel.text = "page two label"
