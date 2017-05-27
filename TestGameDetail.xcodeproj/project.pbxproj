@@ -15,6 +15,7 @@
 		071561091ED696FD00DAC666 /* TestGameDetailTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071561081ED696FD00DAC666 /* TestGameDetailTests.swift */; };
 		071561141ED696FD00DAC666 /* TestGameDetailUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071561131ED696FD00DAC666 /* TestGameDetailUITests.swift */; };
 		071561241ED6D0E300DAC666 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071561231ED6D0E300DAC666 /* TabView.swift */; };
+		07A2705B1ED926680017CC65 /* PentagonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A2705A1ED926680017CC65 /* PentagonView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		071561131ED696FD00DAC666 /* TestGameDetailUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestGameDetailUITests.swift; sourceTree = "<group>"; };
 		071561151ED696FD00DAC666 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		071561231ED6D0E300DAC666 /* TabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
+		07A2705A1ED926680017CC65 /* PentagonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PentagonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				071560FC1ED696FD00DAC666 /* LaunchScreen.storyboard */,
 				071560FF1ED696FD00DAC666 /* Info.plist */,
 				071561231ED6D0E300DAC666 /* TabView.swift */,
+				07A2705A1ED926680017CC65 /* PentagonView.swift */,
 			);
 			path = TestGameDetail;
 			sourceTree = "<group>";
@@ -262,6 +265,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07A2705B1ED926680017CC65 /* PentagonView.swift in Sources */,
 				071560F61ED696FD00DAC666 /* ViewController.swift in Sources */,
 				071561241ED6D0E300DAC666 /* TabView.swift in Sources */,
 				071560F41ED696FD00DAC666 /* AppDelegate.swift in Sources */,

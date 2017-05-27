@@ -19,16 +19,15 @@ class ViewController: UIViewController,UIScrollViewDelegate {
     var hiddenTabView : TabView?
     
     var pageOneView : UIView?
-    var pageTwoView : UIView?
+    var pageTwoView : PentagonView?
     var pageThreeView : UIView?
-    var pageFourView : UIView?
     
     let screenW : CGFloat = UIScreen.main.bounds.size.width
     let screenH : CGFloat = UIScreen.main.bounds.size.height
     let headH : CGFloat = UIScreen.main.bounds.size.height * 0.3
     let tabH : CGFloat = 30
     let sliderH : CGFloat = 2
-    let titleArray = ["详情","评分","相关推荐","招待码"]
+    let titleArray = ["详情","评分","相关推荐"]
     
     //MARK: - life cycle
     override func viewDidLoad() {
@@ -74,8 +73,8 @@ class ViewController: UIViewController,UIScrollViewDelegate {
         oneLabel.textAlignment = .center
         self.pageOneView?.addSubview(oneLabel)
         
-        self.pageTwoView = UIView(frame: CGRect(x: screenW, y: 0, width: screenW, height: screenH))
-        self.pageTwoView?.backgroundColor = UIColor.orange
+        self.pageTwoView = PentagonView(frame: CGRect(x: screenW, y: 0, width: screenW, height: screenH), radius: 100)
+        self.pageTwoView?.backgroundColor = UIColor.white
         self.hScrollView?.addSubview(self.pageTwoView!)
         let TwoLabel = UILabel(frame: CGRect(x: 0, y: screenH - 30, width: screenW, height: 30))
         TwoLabel.text = "page two label"
@@ -89,14 +88,6 @@ class ViewController: UIViewController,UIScrollViewDelegate {
         threeLabel.text = "page three label"
         threeLabel.textAlignment = .center
         self.pageThreeView?.addSubview(threeLabel)
-        
-        self.pageFourView = UIView(frame: CGRect(x: screenW * 3, y: 0, width: screenW, height: screenH * 3))
-        self.pageFourView?.backgroundColor = UIColor.purple
-        self.hScrollView?.addSubview(self.pageFourView!)
-        let fourLabel = UILabel(frame: CGRect(x: 0, y: screenH * 3 - 30, width: screenW, height: 30))
-        fourLabel.text = "page four label"
-        fourLabel.textAlignment = .center
-        self.pageFourView?.addSubview(fourLabel)
         
         let hScrollY : CGFloat = headH + 10 + tabH
         self.hScrollView?.frame = CGRect(x: 0, y: hScrollY, width: screenW, height: (self.pageOneView?.frame.size.height)!)
@@ -151,12 +142,8 @@ class ViewController: UIViewController,UIScrollViewDelegate {
                 viewH = (self.pageTwoView?.frame.size.height)!
                 self.hScrollView?.frame = CGRect(x: 0, y: hScrollY, width: screenW, height: viewH)
                 self.vScrollView?.contentSize = CGSize(width: 0, height: hScrollY + viewH)
-            case 2:
-                viewH = (self.pageThreeView?.frame.size.height)!
-                self.hScrollView?.frame = CGRect(x: 0, y: hScrollY, width: screenW, height: viewH)
-                self.vScrollView?.contentSize = CGSize(width: 0, height: hScrollY + viewH)
             default:
-                viewH = (self.pageFourView?.frame.size.height)!
+                viewH = (self.pageThreeView?.frame.size.height)!
                 self.hScrollView?.frame = CGRect(x: 0, y: hScrollY, width: screenW, height: viewH)
                 self.vScrollView?.contentSize = CGSize(width: 0, height: hScrollY + viewH)
             }
