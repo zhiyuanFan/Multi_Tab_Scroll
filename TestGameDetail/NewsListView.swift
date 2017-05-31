@@ -10,7 +10,6 @@ import UIKit
 
 class NewsListView: UIView,UITableViewDelegate,UITableViewDataSource {
     var listView : UITableView!
-    let cellId : String = "newsCell"
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -19,8 +18,10 @@ class NewsListView: UIView,UITableViewDelegate,UITableViewDataSource {
     
     func setupSubViews() {
         self.listView = UITableView(frame: self.bounds)
+        self.listView.register(NewsCell.self, forCellReuseIdentifier: NewsCell.className)
         self.listView.delegate = self
         self.listView.dataSource = self
+        self.listView.backgroundColor = UIColor(red: 240.0/255.0, green: 240.0/255.0, blue: 240.0/255.0, alpha: 1)
         self.addSubview(self.listView)
     }
     
@@ -30,23 +31,19 @@ class NewsListView: UIView,UITableViewDelegate,UITableViewDataSource {
     
     //MARK: - table view data source
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 30
+        return 10
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCell(withIdentifier: cellId)
-        if cell == nil {
-            cell = UITableViewCell(style: .value1, reuseIdentifier: cellId)
-        }
-        cell?.textLabel?.text = "the row number of this cell is \(indexPath.row)"
-        
-        return cell!
+        let cell : NewsCell = self.listView.dequeueReusableCell(withIdentifier: NewsCell.className) as! NewsCell
+        cell.setupInfo()
+        return cell
     }
     
     
     //MARK: - table view delegate
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        return 90
     }
 }
