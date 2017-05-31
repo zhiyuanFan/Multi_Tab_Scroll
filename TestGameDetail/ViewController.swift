@@ -20,7 +20,7 @@ class ViewController: UIViewController,UIScrollViewDelegate {
     
     var pageOneView : UIView?
     var pageTwoView : PentagonView?
-    var pageThreeView : UIView?
+    var pageThreeView : NewsListView?
     
     let screenW : CGFloat = UIScreen.main.bounds.size.width
     let screenH : CGFloat = UIScreen.main.bounds.size.height
@@ -60,8 +60,9 @@ class ViewController: UIViewController,UIScrollViewDelegate {
         self.view.addSubview(self.hiddenTabView!)
         
         self.hScrollView = UIScrollView(frame: CGRect(x: 0, y: headH + 10 + tabH, width: screenW, height: screenH - headH - 10 - tabH))
-        self.hScrollView?.contentSize = CGSize(width: screenW * 4, height: 0)
+        self.hScrollView?.contentSize = CGSize(width: screenW * 3, height: 0)
         self.hScrollView?.delegate = self
+        self.hScrollView?.bounces = false
         self.hScrollView?.isPagingEnabled = true
         self.vScrollView?.addSubview(self.hScrollView!)
         
@@ -81,13 +82,9 @@ class ViewController: UIViewController,UIScrollViewDelegate {
         TwoLabel.textAlignment = .center
         self.pageTwoView?.addSubview(TwoLabel)
         
-        self.pageThreeView = UIView(frame: CGRect(x: screenW * 2, y: 0, width: screenW, height: screenH * 1.5))
-        self.pageThreeView?.backgroundColor = UIColor.yellow
+        self.pageThreeView = NewsListView(frame: CGRect(x: screenW * 2, y: 0, width: screenW, height: screenH - 64 - 20))
+        self.pageThreeView?.listView.isScrollEnabled = false
         self.hScrollView?.addSubview(self.pageThreeView!)
-        let threeLabel = UILabel(frame: CGRect(x: 0, y: screenH * 1.5 - 30, width: screenW, height: 30))
-        threeLabel.text = "page three label"
-        threeLabel.textAlignment = .center
-        self.pageThreeView?.addSubview(threeLabel)
         
         let hScrollY : CGFloat = headH + 10 + tabH
         self.hScrollView?.frame = CGRect(x: 0, y: hScrollY, width: screenW, height: (self.pageOneView?.frame.size.height)!)
@@ -111,7 +108,8 @@ class ViewController: UIViewController,UIScrollViewDelegate {
                 self.showTabView?.sliderView?.frame = CGRect(x: moveX, y: self.tabH - self.sliderH, width: self.screenW / CGFloat(titleCount), height: self.sliderH)
                 self.hiddenTabView?.sliderView?.frame = CGRect(x: moveX, y: self.tabH - self.sliderH, width: self.screenW / CGFloat(titleCount), height: self.sliderH)
             }, completion: nil)
-        } else {
+            
+        } else if scrollView == self.vScrollView {
             if scrollView.contentOffset.y > (headH + tabH / 2) {
                 UIView.animateKeyframes(withDuration: 0.2, delay: 0, options: UIViewKeyframeAnimationOptions(rawValue: UInt(7<<16)), animations: {
                     self.hiddenTabView?.isHidden = false
@@ -143,7 +141,8 @@ class ViewController: UIViewController,UIScrollViewDelegate {
                 self.hScrollView?.frame = CGRect(x: 0, y: hScrollY, width: screenW, height: viewH)
                 self.vScrollView?.contentSize = CGSize(width: 0, height: hScrollY + viewH)
             default:
-                viewH = (self.pageThreeView?.frame.size.height)!
+                viewH = (self.pageThreeView?.listView.contentSize.height)!
+                self.pageThreeView?.listView.frame = CGRect(x: 0, y: 0, width: screenW, height: viewH)
                 self.hScrollView?.frame = CGRect(x: 0, y: hScrollY, width: screenW, height: viewH)
                 self.vScrollView?.contentSize = CGSize(width: 0, height: hScrollY + viewH)
             }
