@@ -65,7 +65,7 @@ class NewsCell: UITableViewCell {
         self.newsImage?.frame = CGRect(x: 5, y: 5, width: cellW * 0.4, height: cellH - 10)
         self.newsTitle?.frame = CGRect(x: imageW + 10, y: 5, width: cellW - imageW - 10, height: cellH * 0.7)
         self.newsFrom?.frame = CGRect(x: imageW + 10, y: cellH - 20, width: 35, height: 15)
-        self.newsDate?.frame = CGRect(x: 0, y: cellH - 20, width: cellW, height: 20)
+        self.newsDate?.frame = CGRect(x: 0, y: cellH - 20, width: cellW - 10, height: 20)
     }
     
     required init?(coder aDecoder: NSCoder) {

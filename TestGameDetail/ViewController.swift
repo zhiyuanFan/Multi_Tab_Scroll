@@ -18,7 +18,7 @@ class ViewController: UIViewController,UIScrollViewDelegate {
     var showTabView : TabView?
     var hiddenTabView : TabView?
     
-    var pageOneView : UIView?
+    var pageOneView : GameBriefView?
     var pageTwoView : PentagonView?
     var pageThreeView : NewsListView?
     
@@ -27,7 +27,7 @@ class ViewController: UIViewController,UIScrollViewDelegate {
     let headH : CGFloat = UIScreen.main.bounds.size.height * 0.3
     let tabH : CGFloat = 30
     let sliderH : CGFloat = 2
-    let titleArray = ["详情","评分","相关推荐"]
+    let titleArray = ["详情","评分","相关文章"]
     
     //MARK: - life cycle
     override func viewDidLoad() {
@@ -41,7 +41,7 @@ class ViewController: UIViewController,UIScrollViewDelegate {
         
         let vScrollViewRect = CGRect(x: 0, y: 64, width: screenW, height: screenH - 64)
         self.vScrollView = UIScrollView(frame: vScrollViewRect)
-        self.vScrollView?.backgroundColor = UIColor.lightGray
+        self.vScrollView?.backgroundColor = UIColor(red: 240.0/255.0, green: 240.0/255.0, blue: 240.0/255.0, alpha: 1)
         self.vScrollView?.delegate = self
         self.view.addSubview(self.vScrollView!)
         
@@ -66,13 +66,14 @@ class ViewController: UIViewController,UIScrollViewDelegate {
         self.hScrollView?.isPagingEnabled = true
         self.vScrollView?.addSubview(self.hScrollView!)
         
-        self.pageOneView = UIView(frame: CGRect(x: 0, y: 0, width: screenW, height: screenH * 2))
-        self.pageOneView?.backgroundColor = UIColor.cyan
+        self.pageOneView = GameBriefView(frame: CGRect(x: 0, y: 0, width: screenW, height: screenH))
+        self.pageOneView?.clickLinkCallBack = { (url: URL) -> Void in
+            let webVC = GameWebViewController()
+            webVC.url = url
+            self.navigationController?.pushViewController(webVC, animated: true)
+        }
+        self.pageOneView?.backgroundColor = UIColor.clear
         self.hScrollView?.addSubview(self.pageOneView!)
-        let oneLabel = UILabel(frame: CGRect(x: 0, y: screenH * 2 - 30, width: screenW, height: 30))
-        oneLabel.text = "page one label"
-        oneLabel.textAlignment = .center
-        self.pageOneView?.addSubview(oneLabel)
         
         self.pageTwoView = PentagonView(frame: CGRect(x: screenW, y: 0, width: screenW, height: screenH), radius: 100)
         self.pageTwoView?.backgroundColor = UIColor(red: 240.0/255.0, green: 240.0/255.0, blue: 240.0/255.0, alpha: 1)
@@ -82,7 +83,7 @@ class ViewController: UIViewController,UIScrollViewDelegate {
         TwoLabel.textAlignment = .center
         self.pageTwoView?.addSubview(TwoLabel)
         
-        self.pageThreeView = NewsListView(frame: CGRect(x: screenW * 2, y: 0, width: screenW, height: screenH - 64 - 20))
+        self.pageThreeView = NewsListView(frame: CGRect(x: screenW * 2, y: -10, width: screenW, height: screenH - 64 - 20))
         self.pageThreeView?.listView.isScrollEnabled = false
         self.hScrollView?.addSubview(self.pageThreeView!)
         
@@ -128,7 +129,6 @@ class ViewController: UIViewController,UIScrollViewDelegate {
 
         if scrollView == self.hScrollView {
             let index : Int = Int(scrollView.contentOffset.x / screenW)
-            print("index : \(index)")
             var viewH : CGFloat = 0.0
             let hScrollY : CGFloat = headH + 10 + tabH
             switch index {
@@ -136,6 +136,7 @@ class ViewController: UIViewController,UIScrollViewDelegate {
                 viewH = (self.pageOneView?.frame.size.height)!
                 self.hScrollView?.frame = CGRect(x: 0, y: hScrollY, width: screenW, height: viewH)
                 self.vScrollView?.contentSize = CGSize(width: 0, height: hScrollY + viewH)
+                self.pageOneView?.imageTableView?.isScrollEnabled = true
             case 1:
                 viewH = (self.pageTwoView?.frame.size.height)!
                 self.hScrollView?.frame = CGRect(x: 0, y: hScrollY, width: screenW, height: viewH)
