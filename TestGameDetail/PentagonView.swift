@@ -31,7 +31,7 @@ class PentagonView : UIView {
     
     convenience init(frame: CGRect , radius: CGFloat) {
         self.init(frame: frame)
-        self.centerPoint = CGPoint(x: self.frame.size.width/2, y: self.frame.size.height/4)
+        self.centerPoint = CGPoint(x: self.frame.size.width/2, y: self.frame.size.height/2)
         self.pRadius = radius
         self.pointArray = createOrderPointArray(radius: self.pRadius!, scaleArray: defaultScaleArray)
     }

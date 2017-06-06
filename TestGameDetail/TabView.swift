@@ -11,8 +11,10 @@ import UIKit
 
 class TabView: UIView {
 //    var titleArray : Array<String>?
-    var sliderView : UIView?
-    let sliderH : CGFloat = 2.0
+    var sliderView: UIView?
+    let sliderH: CGFloat = 2.0
+    var detailButton: UIButton?
+    var newsButton: UIButton?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -30,25 +32,39 @@ class TabView: UIView {
         }
         
         let screenW : CGFloat = UIScreen.main.bounds.size.width
-        
         let selfH : CGFloat = self.frame.size.height
-        
-        print("self.frame : \(self.frame)")
         
         let titleW : CGFloat = screenW / CGFloat(titleArray.count)
         let titleH : CGFloat = self.frame.size.height - sliderH
         let titleCount : Int = titleArray.count
-        for i in 0..<titleCount {
-            let rect : CGRect = CGRect(x: CGFloat(i) * titleW, y: 0, width: titleW, height: titleH)
-            let titleLabel : UILabel = UILabel(frame: rect)
-            titleLabel.textAlignment = .center
-            titleLabel.text = titleArray[i]
-            self.addSubview(titleLabel)
-        }
+        
+        let normalColor = UIColor(red: 153.0/255.0, green: 153.0/255.0, blue: 153.0/255.0, alpha: 1)
+        let selectedColor = UIColor(red: 117.0/255.0, green: 191.0/255.0, blue: 198.0/255.0, alpha: 1)
+        
+        self.detailButton = UIButton(frame: CGRect(x: 0, y: 0, width: titleW, height: titleH))
+        self.detailButton?.titleLabel?.textAlignment = .center
+        self.detailButton?.setTitle(titleArray[0], for: .normal)
+        self.detailButton?.setTitleColor(normalColor, for: .normal)
+        self.detailButton?.setTitleColor(selectedColor, for: .selected)
+        self.detailButton?.isSelected = true
+        self.detailButton?.addTarget(self, action: #selector(self.tabButtonOnClick(button:)), for: .touchUpInside)
+        self.addSubview(self.detailButton!)
+
+        self.newsButton = UIButton(frame: CGRect(x: titleW, y: 0, width: titleW, height: titleH))
+        self.newsButton?.titleLabel?.textAlignment = .center
+        self.newsButton?.setTitle(titleArray[1], for: .normal)
+        self.newsButton?.setTitleColor(normalColor, for: .normal)
+        self.newsButton?.setTitleColor(selectedColor, for: .selected)
+        self.newsButton?.addTarget(self, action: #selector(self.tabButtonOnClick(button:)), for: .touchUpInside)
+        self.addSubview(self.newsButton!)
         
         self.sliderView = UIView(frame: CGRect(x: 0, y: selfH - sliderH, width: screenW / CGFloat(titleCount), height: sliderH))
-        self.sliderView?.backgroundColor = UIColor.red
+        self.sliderView?.backgroundColor = selectedColor
         self.addSubview(self.sliderView!)
+    }
+    
+    func tabButtonOnClick(button: UIButton)  {
+        
     }
     
     

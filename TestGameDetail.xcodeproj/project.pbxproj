@@ -16,13 +16,16 @@
 		071561141ED696FD00DAC666 /* TestGameDetailUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071561131ED696FD00DAC666 /* TestGameDetailUITests.swift */; };
 		071561241ED6D0E300DAC666 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071561231ED6D0E300DAC666 /* TabView.swift */; };
 		072C723D1EDFFC20009CB6C1 /* GameBriefView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072C723C1EDFFC20009CB6C1 /* GameBriefView.swift */; };
-		072C72421EE000C1009CB6C1 /* TTTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 072C72411EE000C1009CB6C1 /* TTTAttributedLabel.m */; };
 		072C72441EE01461009CB6C1 /* GameWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072C72431EE01461009CB6C1 /* GameWebViewController.swift */; };
 		072C732B1EE1747D009CB6C1 /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 072C732A1EE1747D009CB6C1 /* Kingfisher.framework */; };
 		072C732C1EE1747D009CB6C1 /* Kingfisher.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 072C732A1EE1747D009CB6C1 /* Kingfisher.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0741E57D1EDE7FD2008DF038 /* NewsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0741E57C1EDE7FD2008DF038 /* NewsListView.swift */; };
 		0741E57F1EDEB0C7008DF038 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0741E57E1EDEB0C7008DF038 /* NewsCell.swift */; };
 		0741E5811EDEB6A3008DF038 /* NewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0741E5801EDEB6A3008DF038 /* NewsModel.swift */; };
+		077E1BA31EE661C7002ABB3E /* DTCoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 077E1BA11EE661C7002ABB3E /* DTCoreText.framework */; };
+		077E1BA41EE661C7002ABB3E /* DTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 077E1BA21EE661C7002ABB3E /* DTFoundation.framework */; };
+		077E1BA51EE661FD002ABB3E /* DTCoreText.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 077E1BA11EE661C7002ABB3E /* DTCoreText.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		077E1BA61EE661FD002ABB3E /* DTFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 077E1BA21EE661C7002ABB3E /* DTFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		07A2705B1ED926680017CC65 /* PentagonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A2705A1ED926680017CC65 /* PentagonView.swift */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +53,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				077E1BA51EE661FD002ABB3E /* DTCoreText.framework in Embed Frameworks */,
+				077E1BA61EE661FD002ABB3E /* DTFoundation.framework in Embed Frameworks */,
 				072C732C1EE1747D009CB6C1 /* Kingfisher.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -74,13 +79,13 @@
 		071561231ED6D0E300DAC666 /* TabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
 		072C72391EDFFB44009CB6C1 /* TestGameDetail-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TestGameDetail-Bridging-Header.h"; sourceTree = "<group>"; };
 		072C723C1EDFFC20009CB6C1 /* GameBriefView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameBriefView.swift; sourceTree = "<group>"; };
-		072C72401EE000C1009CB6C1 /* TTTAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTAttributedLabel.h; sourceTree = "<group>"; };
-		072C72411EE000C1009CB6C1 /* TTTAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTAttributedLabel.m; sourceTree = "<group>"; };
 		072C72431EE01461009CB6C1 /* GameWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameWebViewController.swift; sourceTree = "<group>"; };
 		072C732A1EE1747D009CB6C1 /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kingfisher.framework; path = CartLib/Carthage/Build/iOS/Kingfisher.framework; sourceTree = "<group>"; };
 		0741E57C1EDE7FD2008DF038 /* NewsListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsListView.swift; sourceTree = "<group>"; };
 		0741E57E1EDEB0C7008DF038 /* NewsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
 		0741E5801EDEB6A3008DF038 /* NewsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsModel.swift; sourceTree = "<group>"; };
+		077E1BA11EE661C7002ABB3E /* DTCoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DTCoreText.framework; sourceTree = "<group>"; };
+		077E1BA21EE661C7002ABB3E /* DTFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DTFoundation.framework; sourceTree = "<group>"; };
 		07A2705A1ED926680017CC65 /* PentagonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PentagonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -89,7 +94,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				077E1BA31EE661C7002ABB3E /* DTCoreText.framework in Frameworks */,
 				072C732B1EE1747D009CB6C1 /* Kingfisher.framework in Frameworks */,
+				077E1BA41EE661C7002ABB3E /* DTFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,18 +181,10 @@
 		072C723E1EE000C1009CB6C1 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
-				072C723F1EE000C1009CB6C1 /* TTTAttributedLabel */,
+				077E1BA11EE661C7002ABB3E /* DTCoreText.framework */,
+				077E1BA21EE661C7002ABB3E /* DTFoundation.framework */,
 			);
 			path = Libs;
-			sourceTree = "<group>";
-		};
-		072C723F1EE000C1009CB6C1 /* TTTAttributedLabel */ = {
-			isa = PBXGroup;
-			children = (
-				072C72401EE000C1009CB6C1 /* TTTAttributedLabel.h */,
-				072C72411EE000C1009CB6C1 /* TTTAttributedLabel.m */,
-			);
-			path = TTTAttributedLabel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -351,7 +350,6 @@
 				071561241ED6D0E300DAC666 /* TabView.swift in Sources */,
 				0741E57F1EDEB0C7008DF038 /* NewsCell.swift in Sources */,
 				071560F41ED696FD00DAC666 /* AppDelegate.swift in Sources */,
-				072C72421EE000C1009CB6C1 /* TTTAttributedLabel.m in Sources */,
 				072C72441EE01461009CB6C1 /* GameWebViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -511,9 +509,15 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/CartLib/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/TestGameDetail/Libs",
 				);
 				INFOPLIST_FILE = TestGameDetail/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/TestGameDetail/Libs/DTCoreText/Core/Source",
+					"$(PROJECT_DIR)/TestGameDetail/Libs/DTFoundation/Core/Source",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.qooapp.zy.TestGameDetail;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "TestGameDetail/TestGameDetail-Bridging-Header.h";
@@ -531,9 +535,15 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/CartLib/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/TestGameDetail/Libs",
 				);
 				INFOPLIST_FILE = TestGameDetail/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/TestGameDetail/Libs/DTCoreText/Core/Source",
+					"$(PROJECT_DIR)/TestGameDetail/Libs/DTFoundation/Core/Source",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.qooapp.zy.TestGameDetail;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "TestGameDetail/TestGameDetail-Bridging-Header.h";

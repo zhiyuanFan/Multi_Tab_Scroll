@@ -27,7 +27,7 @@ class ViewController: UIViewController,UIScrollViewDelegate {
     let headH : CGFloat = UIScreen.main.bounds.size.height * 0.3
     let tabH : CGFloat = 30
     let sliderH : CGFloat = 2
-    let titleArray = ["详情","评分","相关文章"]
+    let titleArray = ["详情","相关文章"]
     
     //MARK: - life cycle
     override func viewDidLoad() {
@@ -60,13 +60,13 @@ class ViewController: UIViewController,UIScrollViewDelegate {
         self.view.addSubview(self.hiddenTabView!)
         
         self.hScrollView = UIScrollView(frame: CGRect(x: 0, y: headH + 10 + tabH, width: screenW, height: screenH - headH - 10 - tabH))
-        self.hScrollView?.contentSize = CGSize(width: screenW * 3, height: 0)
+        self.hScrollView?.contentSize = CGSize(width: screenW * 2, height: 0)
         self.hScrollView?.delegate = self
         self.hScrollView?.bounces = false
         self.hScrollView?.isPagingEnabled = true
         self.vScrollView?.addSubview(self.hScrollView!)
         
-        self.pageOneView = GameBriefView(frame: CGRect(x: 0, y: 0, width: screenW, height: screenH))
+        self.pageOneView = GameBriefView(frame: CGRect(x: 0, y: 0, width: screenW, height: screenH * 2))
         self.pageOneView?.clickLinkCallBack = { (url: URL) -> Void in
             let webVC = GameWebViewController()
             webVC.url = url
@@ -75,15 +75,11 @@ class ViewController: UIViewController,UIScrollViewDelegate {
         self.pageOneView?.backgroundColor = UIColor.clear
         self.hScrollView?.addSubview(self.pageOneView!)
         
-        self.pageTwoView = PentagonView(frame: CGRect(x: screenW, y: 0, width: screenW, height: screenH), radius: 100)
+        self.pageTwoView = PentagonView(frame: CGRect(x: 0, y: (self.pageOneView?.frame.size.height)! - 300, width: screenW, height: 300), radius: 100)
         self.pageTwoView?.backgroundColor = UIColor(red: 240.0/255.0, green: 240.0/255.0, blue: 240.0/255.0, alpha: 1)
-        self.hScrollView?.addSubview(self.pageTwoView!)
-        let TwoLabel = UILabel(frame: CGRect(x: 0, y: screenH - 30, width: screenW, height: 30))
-        TwoLabel.text = "page two label"
-        TwoLabel.textAlignment = .center
-        self.pageTwoView?.addSubview(TwoLabel)
+        self.pageOneView?.addSubview(self.pageTwoView!)
         
-        self.pageThreeView = NewsListView(frame: CGRect(x: screenW * 2, y: -10, width: screenW, height: screenH - 64 - 20))
+        self.pageThreeView = NewsListView(frame: CGRect(x: screenW, y: -10, width: screenW, height: screenH - 64 - 20))
         self.pageThreeView?.listView.isScrollEnabled = false
         self.hScrollView?.addSubview(self.pageThreeView!)
         
@@ -137,15 +133,19 @@ class ViewController: UIViewController,UIScrollViewDelegate {
                 self.hScrollView?.frame = CGRect(x: 0, y: hScrollY, width: screenW, height: viewH)
                 self.vScrollView?.contentSize = CGSize(width: 0, height: hScrollY + viewH)
                 self.pageOneView?.imageTableView?.isScrollEnabled = true
-            case 1:
-                viewH = (self.pageTwoView?.frame.size.height)!
-                self.hScrollView?.frame = CGRect(x: 0, y: hScrollY, width: screenW, height: viewH)
-                self.vScrollView?.contentSize = CGSize(width: 0, height: hScrollY + viewH)
+                self.showTabView?.detailButton?.isSelected = true
+                self.hiddenTabView?.detailButton?.isSelected = true
+                self.showTabView?.newsButton?.isSelected = false
+                self.hiddenTabView?.newsButton?.isSelected = false
             default:
                 viewH = (self.pageThreeView?.listView.contentSize.height)!
                 self.pageThreeView?.listView.frame = CGRect(x: 0, y: 0, width: screenW, height: viewH)
                 self.hScrollView?.frame = CGRect(x: 0, y: hScrollY, width: screenW, height: viewH)
                 self.vScrollView?.contentSize = CGSize(width: 0, height: hScrollY + viewH)
+                self.showTabView?.detailButton?.isSelected = false
+                self.hiddenTabView?.detailButton?.isSelected = false
+                self.showTabView?.newsButton?.isSelected = true
+                self.hiddenTabView?.newsButton?.isSelected = true
             }
         }
     }
