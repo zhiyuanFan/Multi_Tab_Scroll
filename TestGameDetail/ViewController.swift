@@ -52,10 +52,16 @@ class ViewController: UIViewController,UIScrollViewDelegate {
         
         self.showTabView = TabView(frame: CGRect(x: 0, y: headH, width: screenW, height: tabH))
         self.showTabView?.setTitleArray(titleArray: titleArray)
+        self.showTabView?.tabClickBlock = { (tabName) in
+            self.tabButtonCallBack(tabName: tabName)
+        }
         self.vScrollView?.addSubview(self.showTabView!)
         
         self.hiddenTabView = TabView(frame: CGRect(x: 0, y: 64, width: screenW, height: tabH))
         self.hiddenTabView?.isHidden = true
+        self.hiddenTabView?.tabClickBlock = { (tabName) in
+            self.tabButtonCallBack(tabName: tabName)
+        }
         self.hiddenTabView?.setTitleArray(titleArray: titleArray)
         self.view.addSubview(self.hiddenTabView!)
         
@@ -75,9 +81,9 @@ class ViewController: UIViewController,UIScrollViewDelegate {
         self.pageOneView?.backgroundColor = UIColor.clear
         self.hScrollView?.addSubview(self.pageOneView!)
         
-        self.pageTwoView = PentagonView(frame: CGRect(x: 0, y: (self.pageOneView?.frame.size.height)! - 300, width: screenW, height: 300), radius: 100)
-        self.pageTwoView?.backgroundColor = UIColor(red: 240.0/255.0, green: 240.0/255.0, blue: 240.0/255.0, alpha: 1)
-        self.pageOneView?.addSubview(self.pageTwoView!)
+//        self.pageTwoView = PentagonView(frame: CGRect(x: 0, y: (self.pageOneView?.frame.size.height)! - 300, width: screenW, height: 300), radius: 100)
+//        self.pageTwoView?.backgroundColor = UIColor(red: 240.0/255.0, green: 240.0/255.0, blue: 240.0/255.0, alpha: 1)
+//        self.pageOneView?.addSubview(self.pageTwoView!)
         
         self.pageThreeView = NewsListView(frame: CGRect(x: screenW, y: -10, width: screenW, height: screenH - 64 - 20))
         self.pageThreeView?.listView.isScrollEnabled = false
@@ -92,6 +98,16 @@ class ViewController: UIViewController,UIScrollViewDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    //MARK: - TAB Button 点击回调方法
+    func tabButtonCallBack(tabName: String) {
+        if tabName == "Detail" {
+            self.hScrollView?.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+        } else {
+            self.hScrollView?.setContentOffset(CGPoint(x: screenW, y: 0), animated: true)
+        }
+    }
+    
     
     // MARK: - scroll view delegate
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -121,8 +137,14 @@ class ViewController: UIViewController,UIScrollViewDelegate {
         }
     }
     
+    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        if scrollView == self.hScrollView {
+            scrollViewDidEndDecelerating(scrollView)
+        }
+    }
+    
+    
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-
         if scrollView == self.hScrollView {
             let index : Int = Int(scrollView.contentOffset.x / screenW)
             var viewH : CGFloat = 0.0

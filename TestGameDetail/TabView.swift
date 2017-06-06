@@ -10,11 +10,12 @@ import Foundation
 import UIKit
 
 class TabView: UIView {
-//    var titleArray : Array<String>?
+
     var sliderView: UIView?
     let sliderH: CGFloat = 2.0
     var detailButton: UIButton?
     var newsButton: UIButton?
+    var tabClickBlock: ((String)->Void)?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -47,6 +48,7 @@ class TabView: UIView {
         self.detailButton?.setTitleColor(normalColor, for: .normal)
         self.detailButton?.setTitleColor(selectedColor, for: .selected)
         self.detailButton?.isSelected = true
+        self.detailButton?.tag = 101
         self.detailButton?.addTarget(self, action: #selector(self.tabButtonOnClick(button:)), for: .touchUpInside)
         self.addSubview(self.detailButton!)
 
@@ -55,6 +57,7 @@ class TabView: UIView {
         self.newsButton?.setTitle(titleArray[1], for: .normal)
         self.newsButton?.setTitleColor(normalColor, for: .normal)
         self.newsButton?.setTitleColor(selectedColor, for: .selected)
+        self.newsButton?.tag = 102
         self.newsButton?.addTarget(self, action: #selector(self.tabButtonOnClick(button:)), for: .touchUpInside)
         self.addSubview(self.newsButton!)
         
@@ -65,6 +68,13 @@ class TabView: UIView {
     
     func tabButtonOnClick(button: UIButton)  {
         
+        self.detailButton?.isSelected = button.tag == 101 ? true : false
+        self.newsButton?.isSelected = button.tag == 101 ? false : true
+        
+        if tabClickBlock != nil {
+            let tabName = button.tag == 101 ? "Detail" : "News"
+            tabClickBlock!(tabName)
+        }
     }
     
     

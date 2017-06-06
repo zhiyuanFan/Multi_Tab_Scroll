@@ -9,6 +9,7 @@
 import UIKit
 import Kingfisher
 import DTCoreText
+import SnapKit
 
 
 class GameBriefView: UIView,
@@ -17,6 +18,8 @@ UITableViewDataSource,
 DTAttributedTextContentViewDelegate
 {
     var imageTableView: UITableView?
+    var titleLabel: UILabel?
+    var abilityView: PentagonView?
     var briefLabel: DTAttributedLabel?
     var clickLinkCallBack: ((URL)->Void)?
 
@@ -70,23 +73,52 @@ DTAttributedTextContentViewDelegate
         self.imageTableView?.transform = CGAffineTransform(rotationAngle: -.pi/2)
         self.addSubview(self.imageTableView!)
         
-        let titleLabel = UILabel(frame: CGRect(x: 10, y: imageH + 20, width: selfW, height: 30))
-        titleLabel.text = "简介"
-        titleLabel.font = UIFont.systemFont(ofSize: 18)
-        self.addSubview(titleLabel)
+        self.titleLabel = UILabel(frame: CGRect(x: 10, y: imageH + 20, width: selfW, height: 30))
+        self.titleLabel?.text = "简介"
+        self.titleLabel?.font = UIFont.systemFont(ofSize: 18)
+        self.addSubview(self.titleLabel!)
         
         let htmlStr = "<p><b>重要：&nbsp;<a href=\"https://www.ispokemongoavailableyet.com/\">點擊查看最新可以遊玩的國家地區</a>（非官方）；本遊戲需Android 4.4或以上系統才可安裝。</b><br></p><p><br></p><p>「Pokémon GO」是Pokémon誕生二十週年的紀念作，由「Ingress」的開發商Niantic Labs提供的地理位置服務技術，使得玩家可以在現實的世界中，體驗到抓捕、交換、和用神奇寶貝戰鬥的樂趣。</p>"
         let data: Data? = htmlStr.data(using: String.Encoding.utf8)
-
         let attrString = NSAttributedString(htmlData: data,options: createCoreTextOptions(), documentAttributes: nil)
-        self.briefLabel = DTAttributedLabel(frame: CGRect(x: 10, y: imageH + 50, width: selfW - 20, height: 300))
+        
+        let moreData : Data? = "<a href=\"https://loadMore.com/\">...更多</a>".data(using: String.Encoding.utf8)
+        let truncationStr = NSAttributedString(htmlData: moreData, options: createCoreTextOptions(), documentAttributes: nil)
+
+        
+        self.briefLabel = DTAttributedLabel()
         self.briefLabel?.numberOfLines = 5
         self.briefLabel?.backgroundColor = UIColor.clear
         self.briefLabel?.attributedString = attrString
         self.briefLabel?.delegate = self
+        self.briefLabel?.truncationString = truncationStr
         self.briefLabel?.lineBreakMode = .byWordWrapping
         self.addSubview(self.briefLabel!)
         
+        self.abilityView = PentagonView(frame: CGRect(x: 0, y: 0, width: selfW, height: 300), radius: 100)
+        self.abilityView?.backgroundColor = UIColor.clear
+        self.addSubview(self.abilityView!)
+        
+        setupUI()
+        
+    }
+    
+    func setupUI() {
+        let selfW = self.frame.size.width
+        
+        self.briefLabel?.snp.makeConstraints({ (make) in
+            make.top.equalTo((self.titleLabel?.snp.bottom)!).offset(10)
+            make.left.equalTo(10)
+            make.width.equalTo(selfW - 20)
+            make.height.equalTo(200)
+        })
+        
+        self.abilityView?.snp.makeConstraints({ (make) in
+            make.top.equalTo((self.briefLabel?.snp.bottom)!).offset(10)
+            make.left.equalTo(0)
+            make.width.equalTo(selfW)
+            make.height.equalTo(300)
+        })
     }
     
     //MARK: - DTAttributedTextContentViewDelegate
@@ -105,6 +137,11 @@ DTAttributedTextContentViewDelegate
     }
     
     func linkPushed(button: DTLinkButton) {
+        if  button.url == nil {
+            self.briefLabel?.numberOfLines = 0
+            return
+        }
+        
         if clickLinkCallBack != nil{
             clickLinkCallBack!(button.url)
         }
@@ -114,7 +151,7 @@ DTAttributedTextContentViewDelegate
         let options = [
                        DTDefaultLinkColor: UIColor(red: 117.0/255.0, green: 191.0/255.0, blue: 198.0/255.0, alpha: 1),
                        DTLinkHighlightColorAttribute: UIColor.red,
-                       DTLinkAttribute : UIFont.systemFont(ofSize: 15),
+                       DTLinkAttribute : UIFont.systemFont(ofSize: 13),
                        DTDefaultFontSize: 15] as [String : Any]
         
         return options

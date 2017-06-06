@@ -26,6 +26,9 @@
 		077E1BA41EE661C7002ABB3E /* DTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 077E1BA21EE661C7002ABB3E /* DTFoundation.framework */; };
 		077E1BA51EE661FD002ABB3E /* DTCoreText.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 077E1BA11EE661C7002ABB3E /* DTCoreText.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		077E1BA61EE661FD002ABB3E /* DTFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 077E1BA21EE661C7002ABB3E /* DTFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		077E1BD31EE6C39C002ABB3E /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 077E1BD21EE6C39C002ABB3E /* SnapKit.framework */; };
+		077E1BD41EE6C502002ABB3E /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 077E1BD21EE6C39C002ABB3E /* SnapKit.framework */; };
+		077E1BD51EE6C502002ABB3E /* SnapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 077E1BD21EE6C39C002ABB3E /* SnapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		07A2705B1ED926680017CC65 /* PentagonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A2705A1ED926680017CC65 /* PentagonView.swift */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +59,7 @@
 				077E1BA51EE661FD002ABB3E /* DTCoreText.framework in Embed Frameworks */,
 				077E1BA61EE661FD002ABB3E /* DTFoundation.framework in Embed Frameworks */,
 				072C732C1EE1747D009CB6C1 /* Kingfisher.framework in Embed Frameworks */,
+				077E1BD51EE6C502002ABB3E /* SnapKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -86,6 +90,7 @@
 		0741E5801EDEB6A3008DF038 /* NewsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsModel.swift; sourceTree = "<group>"; };
 		077E1BA11EE661C7002ABB3E /* DTCoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DTCoreText.framework; sourceTree = "<group>"; };
 		077E1BA21EE661C7002ABB3E /* DTFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DTFoundation.framework; sourceTree = "<group>"; };
+		077E1BD21EE6C39C002ABB3E /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = CartLib/Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
 		07A2705A1ED926680017CC65 /* PentagonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PentagonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -94,9 +99,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				077E1BD31EE6C39C002ABB3E /* SnapKit.framework in Frameworks */,
 				077E1BA31EE661C7002ABB3E /* DTCoreText.framework in Frameworks */,
 				072C732B1EE1747D009CB6C1 /* Kingfisher.framework in Frameworks */,
 				077E1BA41EE661C7002ABB3E /* DTFoundation.framework in Frameworks */,
+				077E1BD41EE6C502002ABB3E /* SnapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,6 +132,7 @@
 				071561071ED696FD00DAC666 /* TestGameDetailTests */,
 				071561121ED696FD00DAC666 /* TestGameDetailUITests */,
 				071560F11ED696FD00DAC666 /* Products */,
+				077E1BD11EE6C39B002ABB3E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -185,6 +193,14 @@
 				077E1BA21EE661C7002ABB3E /* DTFoundation.framework */,
 			);
 			path = Libs;
+			sourceTree = "<group>";
+		};
+		077E1BD11EE6C39B002ABB3E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				077E1BD21EE6C39C002ABB3E /* SnapKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
