@@ -21,6 +21,7 @@ class NewsListView: UIView,UITableViewDelegate,UITableViewDataSource {
         self.listView.register(NewsCell.self, forCellReuseIdentifier: NewsCell.className)
         self.listView.delegate = self
         self.listView.dataSource = self
+        self.listView.tableFooterView = UIView()
         self.listView.backgroundColor = UIColor(red: 240.0/255.0, green: 240.0/255.0, blue: 240.0/255.0, alpha: 1)
         self.addSubview(self.listView)
     }
@@ -31,7 +32,7 @@ class NewsListView: UIView,UITableViewDelegate,UITableViewDataSource {
     
     //MARK: - table view data source
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return 3
     }
     
     

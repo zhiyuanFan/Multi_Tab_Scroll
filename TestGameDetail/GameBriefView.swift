@@ -19,10 +19,16 @@ DTAttributedTextContentViewDelegate
 {
     var imageTableView: UITableView?
     var titleLabel: UILabel?
-    var abilityView: PentagonView?
     var briefLabel: DTAttributedLabel?
+    var tagView: TagView?
+    var abilityView: PentagonView?
+    
+    
+    //只为测试高度所用
     var briefHeightLabel: UILabel?
+    //点击更多,更改scrollview的frame和contentsize
     var clickMoreCallBack: ((Void)->Void)?
+    //点击链接跳转
     var clickLinkCallBack: ((URL)->Void)?
 
     let imageUrlArray = [
@@ -84,7 +90,7 @@ DTAttributedTextContentViewDelegate
         let data: Data? = htmlStr.data(using: String.Encoding.utf8)
         let attrString = NSAttributedString(htmlData: data,options: createCoreTextOptions(), documentAttributes: nil)
         
-        let moreData : Data? = "<a href=\"https://loadMore.com/\">...更多</a>".data(using: String.Encoding.utf8)
+        let moreData : Data? = "<a href=\"https://loadMore.com/\">...更多  </a>".data(using: String.Encoding.utf8)
         let truncationStr = NSAttributedString(htmlData: moreData, options: createCoreTextOptions(), documentAttributes: nil)
 
         
@@ -104,20 +110,31 @@ DTAttributedTextContentViewDelegate
         self.briefLabel?.lineBreakMode = .byWordWrapping
         self.addSubview(self.briefLabel!)
         
-        self.abilityView = PentagonView(frame: CGRect(x: 0, y: imageH + 200, width: selfW, height: 300), radius: 100)
+        self.tagView = TagView(frame: CGRect(x: 10, y: imageH + 200, width: selfW, height: 80))
+        self.addSubview(self.tagView!)
+        
+        self.abilityView = PentagonView(frame: CGRect(x: 0, y: imageH + 280, width: selfW, height: 340), radius: 100)
         self.abilityView?.backgroundColor = UIColor.clear
         self.addSubview(self.abilityView!)
-        print("inner Max y 0 : \(self.briefLabel?.frame ?? CGRect.zero)")
+        
         setupUI()
     }
     
     func setupUI() {
         let selfW = self.frame.size.width
-        self.abilityView?.snp.makeConstraints({ (make) in
+        
+        self.tagView?.snp.makeConstraints({ (make) in
             make.top.equalTo((self.briefLabel?.snp.bottom)!).offset(10)
             make.left.equalTo(0)
             make.width.equalTo(selfW)
-            make.height.equalTo(300)
+            make.height.equalTo(80)
+        })
+        
+        self.abilityView?.snp.makeConstraints({ (make) in
+            make.top.equalTo((self.tagView?.snp.bottom)!).offset(10)
+            make.left.equalTo(0)
+            make.width.equalTo(selfW)
+            make.height.equalTo(340)
         })
         print("inner Max y : \(self.abilityView?.frame ?? CGRect.zero)")
     }
@@ -173,6 +190,7 @@ DTAttributedTextContentViewDelegate
     func createCoreTextOptions() -> Dictionary<String, Any> {
         let options = [
                        DTUseiOS6Attributes: true,
+                       DTDefaultLinkDecoration: false,
                        DTDefaultLinkColor: UIColor(red: 117.0/255.0, green: 191.0/255.0, blue: 198.0/255.0, alpha: 1),
                        DTLinkHighlightColorAttribute: UIColor.red,
                        DTLinkAttribute : UIFont.systemFont(ofSize: 13),

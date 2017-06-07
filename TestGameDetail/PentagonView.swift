@@ -8,6 +8,7 @@
 
 
 import UIKit
+import SnapKit
 
 class PentagonView : UIView {
 
@@ -20,6 +21,9 @@ class PentagonView : UIView {
     var centerPoint : CGPoint?
     var pRadius : CGFloat?
     var pointArray = Array<CGPoint>()
+    
+    var titleLabel: UILabel?
+    var reviewLabel: UILabel?
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -34,6 +38,34 @@ class PentagonView : UIView {
         self.centerPoint = CGPoint(x: self.frame.size.width/2, y: self.frame.size.height/2)
         self.pRadius = radius
         self.pointArray = createOrderPointArray(radius: self.pRadius!, scaleArray: defaultScaleArray)
+        
+        setupSubViews()
+    }
+    
+    func setupSubViews() {
+        self.titleLabel = UILabel()
+        self.titleLabel?.text = "评分"
+        self.titleLabel?.font = UIFont.systemFont(ofSize: 18)
+        self.addSubview(self.titleLabel!)
+        
+        self.reviewLabel = UILabel()
+        self.reviewLabel?.text = "共有 1375 玩家评分"
+        self.reviewLabel?.font = UIFont.systemFont(ofSize: 13)
+        self.addSubview(self.reviewLabel!)
+        
+        setupUI()
+    }
+    
+    func setupUI() {
+        self.titleLabel?.snp.makeConstraints({ (make) in
+            make.top.equalTo(0)
+            make.left.equalTo(10)
+        })
+        let viewW = self.frame.size.width
+        self.reviewLabel?.snp.makeConstraints({ (make) in
+            make.bottom.equalTo(-20)
+            make.centerX.equalTo(viewW/2)
+        })
     }
     
     override func draw(_ rect: CGRect) {

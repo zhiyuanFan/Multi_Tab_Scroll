@@ -19,7 +19,6 @@ class ViewController: UIViewController,UIScrollViewDelegate {
     var hiddenTabView : TabView?
     
     var pageOneView : GameBriefView?
-    var pageTwoView : PentagonView?
     var pageThreeView : NewsListView?
     
     let screenW : CGFloat = UIScreen.main.bounds.size.width
@@ -43,12 +42,12 @@ class ViewController: UIViewController,UIScrollViewDelegate {
         self.vScrollView = UIScrollView(frame: vScrollViewRect)
         self.vScrollView?.backgroundColor = UIColor(red: 240.0/255.0, green: 240.0/255.0, blue: 240.0/255.0, alpha: 1)
         self.vScrollView?.delegate = self
+        self.vScrollView?.showsVerticalScrollIndicator = false
         self.view.addSubview(self.vScrollView!)
         
         self.headView = UIView(frame: CGRect(x: 0, y: 0, width: screenW, height: headH))
         self.headView?.backgroundColor = UIColor.blue
         self.vScrollView?.addSubview(self.headView!)
-        
         
         self.showTabView = TabView(frame: CGRect(x: 0, y: headH, width: screenW, height: tabH))
         self.showTabView?.setTitleArray(titleArray: titleArray)
@@ -69,6 +68,7 @@ class ViewController: UIViewController,UIScrollViewDelegate {
         self.hScrollView?.contentSize = CGSize(width: screenW * 2, height: 0)
         self.hScrollView?.delegate = self
         self.hScrollView?.bounces = false
+        self.hScrollView?.showsHorizontalScrollIndicator = false
         self.hScrollView?.isPagingEnabled = true
         self.vScrollView?.addSubview(self.hScrollView!)
         
@@ -173,6 +173,9 @@ class ViewController: UIViewController,UIScrollViewDelegate {
                 self.hiddenTabView?.newsButton?.isSelected = false
             default:
                 viewH = (self.pageThreeView?.listView.contentSize.height)!
+                if viewH < screenH {
+                    viewH = screenH
+                }
                 self.pageThreeView?.listView.frame = CGRect(x: 0, y: 0, width: screenW, height: viewH)
                 self.hScrollView?.frame = CGRect(x: 0, y: hScrollY, width: screenW, height: viewH)
                 self.vScrollView?.contentSize = CGSize(width: 0, height: hScrollY + viewH)
