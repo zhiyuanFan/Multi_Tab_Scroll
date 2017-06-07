@@ -78,25 +78,37 @@ class ViewController: UIViewController,UIScrollViewDelegate {
             webVC.url = url
             self.navigationController?.pushViewController(webVC, animated: true)
         }
-        self.pageOneView?.backgroundColor = UIColor.clear
-        self.hScrollView?.addSubview(self.pageOneView!)
-        
-//        self.pageTwoView = PentagonView(frame: CGRect(x: 0, y: (self.pageOneView?.frame.size.height)! - 300, width: screenW, height: 300), radius: 100)
-//        self.pageTwoView?.backgroundColor = UIColor(red: 240.0/255.0, green: 240.0/255.0, blue: 240.0/255.0, alpha: 1)
-//        self.pageOneView?.addSubview(self.pageTwoView!)
+        self.pageOneView?.clickMoreCallBack = {
+            let viewH = self.getPageOneHeight()
+            let hScrollY : CGFloat = self.headH + 10 + self.tabH
+            self.hScrollView?.frame = CGRect(x: 0, y: hScrollY, width: self.screenW, height: viewH)
+            self.vScrollView?.contentSize = CGSize(width: 0, height: hScrollY + viewH)
+            self.view.setNeedsUpdateConstraints()
+            UIView.animateKeyframes(withDuration: 0.25, delay: 0, options: UIViewKeyframeAnimationOptions(rawValue: UInt(7<<16)), animations: {
+                self.view.layoutIfNeeded()
+            }, completion: nil)
+        }
         
         self.pageThreeView = NewsListView(frame: CGRect(x: screenW, y: -10, width: screenW, height: screenH - 64 - 20))
         self.pageThreeView?.listView.isScrollEnabled = false
         self.hScrollView?.addSubview(self.pageThreeView!)
         
         let hScrollY : CGFloat = headH + 10 + tabH
-        self.hScrollView?.frame = CGRect(x: 0, y: hScrollY, width: screenW, height: (self.pageOneView?.frame.size.height)!)
+        self.hScrollView?.frame = CGRect(x: 0, y: hScrollY, width: screenW, height: getPageOneHeight())
         self.vScrollView?.contentSize = CGSize(width: 0, height: (self.hScrollView?.frame.size.height)! + hScrollY)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    //MARK: - page one height
+    func getPageOneHeight() -> CGFloat {
+        self.pageOneView?.backgroundColor = UIColor.clear
+        self.hScrollView?.addSubview(self.pageOneView!)
+        let maxY : CGFloat = (self.pageOneView?.abilityView?.frame.maxY)!
+        return maxY
     }
     
     //MARK: - TAB Button 点击回调方法
@@ -151,7 +163,7 @@ class ViewController: UIViewController,UIScrollViewDelegate {
             let hScrollY : CGFloat = headH + 10 + tabH
             switch index {
             case 0:
-                viewH = (self.pageOneView?.frame.size.height)!
+                viewH = getPageOneHeight()
                 self.hScrollView?.frame = CGRect(x: 0, y: hScrollY, width: screenW, height: viewH)
                 self.vScrollView?.contentSize = CGSize(width: 0, height: hScrollY + viewH)
                 self.pageOneView?.imageTableView?.isScrollEnabled = true

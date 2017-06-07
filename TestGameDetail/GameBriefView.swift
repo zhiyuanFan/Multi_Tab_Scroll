@@ -21,6 +21,8 @@ DTAttributedTextContentViewDelegate
     var titleLabel: UILabel?
     var abilityView: PentagonView?
     var briefLabel: DTAttributedLabel?
+    var briefHeightLabel: UILabel?
+    var clickMoreCallBack: ((Void)->Void)?
     var clickLinkCallBack: ((URL)->Void)?
 
     let imageUrlArray = [
@@ -78,7 +80,7 @@ DTAttributedTextContentViewDelegate
         self.titleLabel?.font = UIFont.systemFont(ofSize: 18)
         self.addSubview(self.titleLabel!)
         
-        let htmlStr = "<p><b>重要：&nbsp;<a href=\"https://www.ispokemongoavailableyet.com/\">點擊查看最新可以遊玩的國家地區</a>（非官方）；本遊戲需Android 4.4或以上系統才可安裝。</b><br></p><p><br></p><p>「Pokémon GO」是Pokémon誕生二十週年的紀念作，由「Ingress」的開發商Niantic Labs提供的地理位置服務技術，使得玩家可以在現實的世界中，體驗到抓捕、交換、和用神奇寶貝戰鬥的樂趣。</p>"
+        let htmlStr = "<p><b>重要：&nbsp;<a href=\"https://www.ispokemongoavailableyet.com/\">點擊查看最新可以遊玩的國家地區</a>（非官方）；本遊戲需Android 4.4或以上系統才可安裝。</b><br></p><p><br></p><p>「Pokémon GO」是Pokémon誕生二十週年的紀念作，由「Ingress」的開發商Niantic Labs提供的地理位置服務技術，使得玩家可以在現實的世界中，體驗到抓捕、交換、和用神奇寶貝戰鬥的樂趣。sadfasdfdsfs我手机发来撒解放垃圾收代理费洒垃圾收集奥拉夫捡垃圾拉大家上了飞机撒来得及发绿色减肥了就是福利局 爱睡懒觉疯狂拉升解放路口时间阿法拉上来看风景撒开了积分拉进来就 记录卡圣诞节疯狂拉丝机风口浪尖洒到了法律经理刷卡机发神经了房价爱丽丝圣诞快乐解放路卡时间风口浪尖奥斯卡了卡卡借楼房吉安快乐圣诞节快乐就是卡拉分开了角度看垃圾点击阿卡丽</p>"
         let data: Data? = htmlStr.data(using: String.Encoding.utf8)
         let attrString = NSAttributedString(htmlData: data,options: createCoreTextOptions(), documentAttributes: nil)
         
@@ -86,7 +88,14 @@ DTAttributedTextContentViewDelegate
         let truncationStr = NSAttributedString(htmlData: moreData, options: createCoreTextOptions(), documentAttributes: nil)
 
         
-        self.briefLabel = DTAttributedLabel()
+        self.briefHeightLabel = UILabel()
+        self.briefHeightLabel?.attributedText = attrString
+        self.briefHeightLabel?.numberOfLines = 0
+        self.briefHeightLabel?.lineBreakMode = .byWordWrapping
+        self.briefHeightLabel?.isHidden = true
+        self.addSubview(self.briefHeightLabel!)
+        
+        self.briefLabel = DTAttributedLabel(frame: CGRect(x: 10, y: imageH + 50, width: selfW - 20, height: 150))
         self.briefLabel?.numberOfLines = 5
         self.briefLabel?.backgroundColor = UIColor.clear
         self.briefLabel?.attributedString = attrString
@@ -95,30 +104,22 @@ DTAttributedTextContentViewDelegate
         self.briefLabel?.lineBreakMode = .byWordWrapping
         self.addSubview(self.briefLabel!)
         
-        self.abilityView = PentagonView(frame: CGRect(x: 0, y: 0, width: selfW, height: 300), radius: 100)
+        self.abilityView = PentagonView(frame: CGRect(x: 0, y: imageH + 200, width: selfW, height: 300), radius: 100)
         self.abilityView?.backgroundColor = UIColor.clear
         self.addSubview(self.abilityView!)
-        
+        print("inner Max y 0 : \(self.briefLabel?.frame ?? CGRect.zero)")
         setupUI()
-        
     }
     
     func setupUI() {
         let selfW = self.frame.size.width
-        
-        self.briefLabel?.snp.makeConstraints({ (make) in
-            make.top.equalTo((self.titleLabel?.snp.bottom)!).offset(10)
-            make.left.equalTo(10)
-            make.width.equalTo(selfW - 20)
-            make.height.equalTo(200)
-        })
-        
         self.abilityView?.snp.makeConstraints({ (make) in
             make.top.equalTo((self.briefLabel?.snp.bottom)!).offset(10)
             make.left.equalTo(0)
             make.width.equalTo(selfW)
             make.height.equalTo(300)
         })
+        print("inner Max y : \(self.abilityView?.frame ?? CGRect.zero)")
     }
     
     //MARK: - DTAttributedTextContentViewDelegate
@@ -137,18 +138,41 @@ DTAttributedTextContentViewDelegate
     }
     
     func linkPushed(button: DTLinkButton) {
-        if  button.url == nil {
-            self.briefLabel?.numberOfLines = 0
+        //点击更多,更改约束
+        if button.url == nil {
+            updateLabelConstraints()
             return
         }
-        
+        //点击正常的URL 进行跳转
         if clickLinkCallBack != nil{
             clickLinkCallBack!(button.url)
         }
     }
     
+    func updateLabelConstraints() {
+        let selfW = self.frame.size.width
+        let labelHeight = getLableHeight(label: self.briefHeightLabel!)
+        self.briefLabel?.numberOfLines = 0
+        self.briefLabel?.snp.updateConstraints({ (make) in
+            make.top.equalTo((self.titleLabel?.snp.bottom)!).offset(10)
+            make.left.equalTo(10)
+            make.width.equalTo(selfW - 20)
+            make.height.equalTo(labelHeight)
+        })
+        
+        self.setNeedsUpdateConstraints()
+        UIView.animateKeyframes(withDuration: 0.25, delay: 0, options: UIViewKeyframeAnimationOptions(rawValue: UInt(7<<16)), animations: {
+            self.layoutIfNeeded()
+        }, completion: nil)
+        
+        if clickMoreCallBack != nil {
+            clickMoreCallBack!()
+        }
+    }
+    
     func createCoreTextOptions() -> Dictionary<String, Any> {
         let options = [
+                       DTUseiOS6Attributes: true,
                        DTDefaultLinkColor: UIColor(red: 117.0/255.0, green: 191.0/255.0, blue: 198.0/255.0, alpha: 1),
                        DTLinkHighlightColorAttribute: UIColor.red,
                        DTLinkAttribute : UIFont.systemFont(ofSize: 13),
@@ -157,7 +181,15 @@ DTAttributedTextContentViewDelegate
         return options
     }
     
-
+    //MARK: - customer func
+    func getLableHeight(label: UILabel) -> CGFloat {
+        let constraint = CGSize(width: CGFloat(self.frame.size.width), height: CGFloat(MAXFLOAT))
+        var size = CGSize.zero
+        let context = NSStringDrawingContext()
+        let boundingBox: CGSize = label.attributedText!.boundingRect(with: constraint, options: .usesLineFragmentOrigin, context: context).size
+        size = CGSize(width: CGFloat(ceil(boundingBox.width)), height: CGFloat(ceil(boundingBox.height)))
+        return size.height
+    }
     
     
     //MARK: - table view data source
