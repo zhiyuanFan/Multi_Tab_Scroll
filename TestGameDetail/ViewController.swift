@@ -11,7 +11,7 @@ import UIKit
 class ViewController: UIViewController,UIScrollViewDelegate {
 
     //MARK: - property
-    var headView : UIView?
+    var headView : GameHeaderView?
     var vScrollView : UIScrollView?
     
     var hScrollView : UIScrollView?
@@ -45,8 +45,8 @@ class ViewController: UIViewController,UIScrollViewDelegate {
         self.vScrollView?.showsVerticalScrollIndicator = false
         self.view.addSubview(self.vScrollView!)
         
-        self.headView = UIView(frame: CGRect(x: 0, y: 0, width: screenW, height: headH))
-        self.headView?.backgroundColor = UIColor.blue
+        self.headView = GameHeaderView(frame: CGRect(x: 0, y: 0, width: screenW, height: headH))
+        self.headView?.backgroundColor = UIColor.white
         self.vScrollView?.addSubview(self.headView!)
         
         self.showTabView = TabView(frame: CGRect(x: 0, y: headH, width: screenW, height: tabH))

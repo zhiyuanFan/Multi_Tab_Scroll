@@ -34,9 +34,9 @@ DTAttributedTextContentViewDelegate
     let imageUrlArray = [
 //        "https://d2jcw5q7j4vmo4.cloudfront.net/G5nHPFpBoG16_j3kMeS0ja6WosDgvXojrvxLxUe3Cr2tcQZxkmwBjZiaUSkI1YQn96Ml=h310",
 //        "https://d2jcw5q7j4vmo4.cloudfront.net/z8JvumCCNE2ASr6RHIesmG4vTmWllZvLEd8Zn1W4dy1KIF6y7sMC_AK6ObDPChxtoU4=h310",
+        "https://d2jcw5q7j4vmo4.cloudfront.net/UJsqbNSI3dFLNeVw0qGYdDNz3uvzrKOw9r0DHQ0KZigwrKfFyiLSFjSTkI_DBdYz2yt-=h310",
         "https://d2jcw5q7j4vmo4.cloudfront.net/2nTHkuiXeIpFK8ZPdb9aQbqQbER21c4Co8NCZVKhtbR_bY_rbJqi5aHKH7fKLvPxnOMW=h310",
         "https://d2jcw5q7j4vmo4.cloudfront.net/-FsKS0G17z5mCs65h6sSWPWZL-bLLjSeBLnXAadmoNmrs1bUotrbSB2Sf-IWJVilT90=h310",
-        "https://d2jcw5q7j4vmo4.cloudfront.net/UJsqbNSI3dFLNeVw0qGYdDNz3uvzrKOw9r0DHQ0KZigwrKfFyiLSFjSTkI_DBdYz2yt-=h310",
         "https://d2jcw5q7j4vmo4.cloudfront.net/0IwcQSjYc_ZWEkt4uoaNjz3-zSmWolDJQHOP8e60uziUObuYbAHrauqci1vw01ctNIA=h310"]
     
     var imageWidthArray = [CGFloat]()
@@ -90,7 +90,7 @@ DTAttributedTextContentViewDelegate
         let data: Data? = htmlStr.data(using: String.Encoding.utf8)
         let attrString = NSAttributedString(htmlData: data,options: createCoreTextOptions(), documentAttributes: nil)
         
-        let moreData : Data? = "<a href=\"https://loadMore.com/\">...更多  </a>".data(using: String.Encoding.utf8)
+        let moreData : Data? = "<a href=\"https://loadmoreonclick/\">...更多  </a>".data(using: String.Encoding.utf8)
         let truncationStr = NSAttributedString(htmlData: moreData, options: createCoreTextOptions(), documentAttributes: nil)
 
         
