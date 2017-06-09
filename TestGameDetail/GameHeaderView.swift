@@ -16,6 +16,10 @@ class GameHeaderView: UIView {
     var gameNameLabel: UILabel?
     var appNameLabel: UILabel?
     var gameCompanyBtn: UIButton?
+    var btnContainer: UIView?
+    var chatBtn: UIButton?
+    var shareBtn: UIButton?
+    var guideBtn: UIButton?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -49,6 +53,32 @@ class GameHeaderView: UIView {
         self.gameCompanyBtn?.setAttributedTitle(attrString, for: .normal)
         self.addSubview(self.gameCompanyBtn!)
         
+        self.btnContainer = UIView()
+        self.addSubview(self.btnContainer!)
+        
+        self.chatBtn = UIButton(type: .custom)
+        self.chatBtn?.layer.cornerRadius = 5
+        self.chatBtn?.layer.masksToBounds = true
+        self.chatBtn?.setTitle("聊 天", for: .normal)
+        self.chatBtn?.setTitleColor(UIColor.white, for: .normal)
+        self.chatBtn?.backgroundColor = UIColor(red: 117.0/255.0, green: 191.0/255.0, blue: 198.0/255.0, alpha: 1)
+        self.btnContainer?.addSubview(self.chatBtn!)
+        
+        self.shareBtn = UIButton(type: .custom)
+//        self.shareBtn?.backgroundColor = UIColor.red
+        self.shareBtn?.layer.cornerRadius = 5
+        self.shareBtn?.layer.masksToBounds = true
+        self.shareBtn?.setImage(UIImage(named: "share"), for: .normal)
+        self.btnContainer?.addSubview(self.shareBtn!)
+        
+        self.guideBtn = UIButton(type: .custom)
+//        self.guideBtn?.backgroundColor = UIColor.yellow
+        self.guideBtn?.layer.cornerRadius = 5
+        self.guideBtn?.layer.masksToBounds = true
+        self.guideBtn?.setImage(UIImage(named: "guide"), for: .normal)
+        self.btnContainer?.addSubview(self.guideBtn!)
+        
+        
         setupUI()
     }
     
@@ -74,6 +104,35 @@ class GameHeaderView: UIView {
             make.top.equalTo((self.appNameLabel?.snp.bottom)!)
             make.left.equalTo((self.gameIconView?.snp.right)!).offset(20)
         })
+        
+        let btnContainerW: CGFloat = 200
+        let btnContainerH: CGFloat = 30
+        let btnMargin: CGFloat = 15
+        let shareBtnW: CGFloat = btnContainerW/4 - btnMargin
+        self.btnContainer?.snp.makeConstraints({ (make) in
+            make.top.equalTo((self.gameIconView?.snp.bottom)!).offset(40)
+            make.centerX.equalTo(self.snp.centerX)
+            make.size.equalTo(CGSize(width: btnContainerW, height: btnContainerH))
+        })
+        
+        self.chatBtn?.snp.makeConstraints({ (make) in
+            make.top.equalTo(0)
+            make.left.equalTo(0)
+            make.size.equalTo(CGSize(width: btnContainerW/2, height: btnContainerH))
+        })
+        
+        self.shareBtn?.snp.makeConstraints({ (make) in
+            make.top.equalTo(0)
+            make.left.equalTo((self.chatBtn?.snp.right)!).offset(btnMargin)
+            make.size.equalTo(CGSize(width: shareBtnW, height: btnContainerH))
+        })
+        
+        self.guideBtn?.snp.makeConstraints({ (make) in
+            make.top.equalTo(0)
+            make.left.equalTo((self.shareBtn?.snp.right)!).offset(btnMargin)
+            make.size.equalTo(CGSize(width: shareBtnW, height: btnContainerH))
+        })
+        
     }
     
     

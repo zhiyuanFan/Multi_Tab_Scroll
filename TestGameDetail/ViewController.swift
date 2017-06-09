@@ -28,6 +28,11 @@ class ViewController: UIViewController,UIScrollViewDelegate {
     let sliderH : CGFloat = 2
     let titleArray = ["详情","相关文章"]
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
     //MARK: - life cycle
     override func viewDidLoad() {
         super.viewDidLoad()

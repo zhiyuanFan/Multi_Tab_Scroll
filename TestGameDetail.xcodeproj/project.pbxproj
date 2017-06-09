@@ -21,7 +21,6 @@
 		072C732C1EE1747D009CB6C1 /* Kingfisher.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 072C732A1EE1747D009CB6C1 /* Kingfisher.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0741E57D1EDE7FD2008DF038 /* NewsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0741E57C1EDE7FD2008DF038 /* NewsListView.swift */; };
 		0741E57F1EDEB0C7008DF038 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0741E57E1EDEB0C7008DF038 /* NewsCell.swift */; };
-		0741E5811EDEB6A3008DF038 /* NewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0741E5801EDEB6A3008DF038 /* NewsModel.swift */; };
 		077E1BA31EE661C7002ABB3E /* DTCoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 077E1BA11EE661C7002ABB3E /* DTCoreText.framework */; };
 		077E1BA41EE661C7002ABB3E /* DTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 077E1BA21EE661C7002ABB3E /* DTFoundation.framework */; };
 		077E1BA51EE661FD002ABB3E /* DTCoreText.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 077E1BA11EE661C7002ABB3E /* DTCoreText.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -31,6 +30,10 @@
 		077E1BD51EE6C502002ABB3E /* SnapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 077E1BD21EE6C39C002ABB3E /* SnapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		077E1C001EE7FAAF002ABB3E /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077E1BFF1EE7FAAF002ABB3E /* TagView.swift */; };
 		077E1C021EE80CA6002ABB3E /* GameHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077E1C011EE80CA6002ABB3E /* GameHeaderView.swift */; };
+		077E1C081EE90794002ABB3E /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077E1C071EE90794002ABB3E /* GameModel.swift */; };
+		077E1C0A1EE910BB002ABB3E /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 077E1C091EE910BB002ABB3E /* Alamofire.framework */; };
+		077E1C0B1EE910BB002ABB3E /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 077E1C091EE910BB002ABB3E /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		077E1C0D1EE921EC002ABB3E /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077E1C0C1EE921EC002ABB3E /* GameViewModel.swift */; };
 		07A2705B1ED926680017CC65 /* PentagonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A2705A1ED926680017CC65 /* PentagonView.swift */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +64,7 @@
 				077E1BA51EE661FD002ABB3E /* DTCoreText.framework in Embed Frameworks */,
 				077E1BA61EE661FD002ABB3E /* DTFoundation.framework in Embed Frameworks */,
 				072C732C1EE1747D009CB6C1 /* Kingfisher.framework in Embed Frameworks */,
+				077E1C0B1EE910BB002ABB3E /* Alamofire.framework in Embed Frameworks */,
 				077E1BD51EE6C502002ABB3E /* SnapKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -89,12 +93,14 @@
 		072C732A1EE1747D009CB6C1 /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kingfisher.framework; path = CartLib/Carthage/Build/iOS/Kingfisher.framework; sourceTree = "<group>"; };
 		0741E57C1EDE7FD2008DF038 /* NewsListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsListView.swift; sourceTree = "<group>"; };
 		0741E57E1EDEB0C7008DF038 /* NewsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
-		0741E5801EDEB6A3008DF038 /* NewsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsModel.swift; sourceTree = "<group>"; };
 		077E1BA11EE661C7002ABB3E /* DTCoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DTCoreText.framework; sourceTree = "<group>"; };
 		077E1BA21EE661C7002ABB3E /* DTFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DTFoundation.framework; sourceTree = "<group>"; };
 		077E1BD21EE6C39C002ABB3E /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = CartLib/Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
 		077E1BFF1EE7FAAF002ABB3E /* TagView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
 		077E1C011EE80CA6002ABB3E /* GameHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameHeaderView.swift; sourceTree = "<group>"; };
+		077E1C071EE90794002ABB3E /* GameModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
+		077E1C091EE910BB002ABB3E /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = CartLib/Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		077E1C0C1EE921EC002ABB3E /* GameViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 		07A2705A1ED926680017CC65 /* PentagonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PentagonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -104,6 +110,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				077E1BD31EE6C39C002ABB3E /* SnapKit.framework in Frameworks */,
+				077E1C0A1EE910BB002ABB3E /* Alamofire.framework in Frameworks */,
 				077E1BA31EE661C7002ABB3E /* DTCoreText.framework in Frameworks */,
 				072C732B1EE1747D009CB6C1 /* Kingfisher.framework in Frameworks */,
 				077E1BA41EE661C7002ABB3E /* DTFoundation.framework in Frameworks */,
@@ -131,6 +138,7 @@
 		071560E71ED696FD00DAC666 = {
 			isa = PBXGroup;
 			children = (
+				077E1C091EE910BB002ABB3E /* Alamofire.framework */,
 				072C732A1EE1747D009CB6C1 /* Kingfisher.framework */,
 				071560F21ED696FD00DAC666 /* TestGameDetail */,
 				071561071ED696FD00DAC666 /* TestGameDetailTests */,
@@ -164,12 +172,13 @@
 				07A2705A1ED926680017CC65 /* PentagonView.swift */,
 				0741E57C1EDE7FD2008DF038 /* NewsListView.swift */,
 				0741E57E1EDEB0C7008DF038 /* NewsCell.swift */,
-				0741E5801EDEB6A3008DF038 /* NewsModel.swift */,
 				072C72391EDFFB44009CB6C1 /* TestGameDetail-Bridging-Header.h */,
 				072C723C1EDFFC20009CB6C1 /* GameBriefView.swift */,
 				072C72431EE01461009CB6C1 /* GameWebViewController.swift */,
 				077E1BFF1EE7FAAF002ABB3E /* TagView.swift */,
 				077E1C011EE80CA6002ABB3E /* GameHeaderView.swift */,
+				077E1C071EE90794002ABB3E /* GameModel.swift */,
+				077E1C0C1EE921EC002ABB3E /* GameViewModel.swift */,
 			);
 			path = TestGameDetail;
 			sourceTree = "<group>";
@@ -364,7 +373,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0741E5811EDEB6A3008DF038 /* NewsModel.swift in Sources */,
+				077E1C0D1EE921EC002ABB3E /* GameViewModel.swift in Sources */,
 				077E1C021EE80CA6002ABB3E /* GameHeaderView.swift in Sources */,
 				077E1C001EE7FAAF002ABB3E /* TagView.swift in Sources */,
 				07A2705B1ED926680017CC65 /* PentagonView.swift in Sources */,
@@ -375,6 +384,7 @@
 				0741E57F1EDEB0C7008DF038 /* NewsCell.swift in Sources */,
 				071560F41ED696FD00DAC666 /* AppDelegate.swift in Sources */,
 				072C72441EE01461009CB6C1 /* GameWebViewController.swift in Sources */,
+				077E1C081EE90794002ABB3E /* GameModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

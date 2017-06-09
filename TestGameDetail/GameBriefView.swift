@@ -110,12 +110,13 @@ DTAttributedTextContentViewDelegate
         self.briefLabel?.lineBreakMode = .byWordWrapping
         self.addSubview(self.briefLabel!)
         
-        self.tagView = TagView(frame: CGRect(x: 10, y: imageH + 200, width: selfW, height: 80))
+        self.tagView = TagView(frame: CGRect(x: 10, y: imageH + 210, width: selfW, height: 80))
         self.addSubview(self.tagView!)
         
-        self.abilityView = PentagonView(frame: CGRect(x: 0, y: imageH + 280, width: selfW, height: 340), radius: 100)
+        self.abilityView = PentagonView(frame: CGRect(x: 0, y: imageH + 300, width: selfW, height: 340), radius: 100)
         self.abilityView?.backgroundColor = UIColor.clear
         self.addSubview(self.abilityView!)
+        print("1--max y : \(self.abilityView?.frame ?? CGRect.zero)")
         
         setupUI()
     }
@@ -136,7 +137,7 @@ DTAttributedTextContentViewDelegate
             make.width.equalTo(selfW)
             make.height.equalTo(340)
         })
-        print("inner Max y : \(self.abilityView?.frame ?? CGRect.zero)")
+        print("2--max y : \(self.abilityView?.frame ?? CGRect.zero)")
     }
     
     //MARK: - DTAttributedTextContentViewDelegate
