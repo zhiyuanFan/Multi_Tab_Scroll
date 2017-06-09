@@ -32,12 +32,11 @@ DTAttributedTextContentViewDelegate
     var clickLinkCallBack: ((URL)->Void)?
 
     let imageUrlArray = [
-//        "https://d2jcw5q7j4vmo4.cloudfront.net/G5nHPFpBoG16_j3kMeS0ja6WosDgvXojrvxLxUe3Cr2tcQZxkmwBjZiaUSkI1YQn96Ml=h310",
-//        "https://d2jcw5q7j4vmo4.cloudfront.net/z8JvumCCNE2ASr6RHIesmG4vTmWllZvLEd8Zn1W4dy1KIF6y7sMC_AK6ObDPChxtoU4=h310",
+        "https://d2jcw5q7j4vmo4.cloudfront.net/dq_t7Is81-gkHYxKfAQ7PuLQBR-Qrte-7S1DsKFZnhaZATpibMSiw3aCrJzYik1x3IV5=h310",
+        "https://d2jcw5q7j4vmo4.cloudfront.net/S97uuMKpsZXzQ70_lf-535aUHwN3pw98veYbHR0CduoNCD7nt9QuBqTPXrk916mNwnJ1=h310",
         "https://d2jcw5q7j4vmo4.cloudfront.net/UJsqbNSI3dFLNeVw0qGYdDNz3uvzrKOw9r0DHQ0KZigwrKfFyiLSFjSTkI_DBdYz2yt-=h310",
-        "https://d2jcw5q7j4vmo4.cloudfront.net/2nTHkuiXeIpFK8ZPdb9aQbqQbER21c4Co8NCZVKhtbR_bY_rbJqi5aHKH7fKLvPxnOMW=h310",
-        "https://d2jcw5q7j4vmo4.cloudfront.net/-FsKS0G17z5mCs65h6sSWPWZL-bLLjSeBLnXAadmoNmrs1bUotrbSB2Sf-IWJVilT90=h310",
-        "https://d2jcw5q7j4vmo4.cloudfront.net/0IwcQSjYc_ZWEkt4uoaNjz3-zSmWolDJQHOP8e60uziUObuYbAHrauqci1vw01ctNIA=h310"]
+        "https://d2jcw5q7j4vmo4.cloudfront.net/22ySaopy8gQQelxKpUMUP56i9kAhnoONR4RmjEZ1AyvWqbO-ae_kO8Hi1zIqBfqNjFk=h310",
+        "https://d2jcw5q7j4vmo4.cloudfront.net/J8kUfrUigeTuBZYHVp5XRKlxmOaOl5g1oXT6EFdVon8xYPoUvkW1N_e05O7-hnqk7UQ=h310"]
     
     var imageWidthArray = [CGFloat]()
     
@@ -86,7 +85,7 @@ DTAttributedTextContentViewDelegate
         self.titleLabel?.font = UIFont.systemFont(ofSize: 18)
         self.addSubview(self.titleLabel!)
         
-        let htmlStr = "<p><b>重要：&nbsp;<a href=\"https://www.ispokemongoavailableyet.com/\">點擊查看最新可以遊玩的國家地區</a>（非官方）；本遊戲需Android 4.4或以上系統才可安裝。</b><br></p><p><br></p><p>「Pokémon GO」是Pokémon誕生二十週年的紀念作，由「Ingress」的開發商Niantic Labs提供的地理位置服務技術，使得玩家可以在現實的世界中，體驗到抓捕、交換、和用神奇寶貝戰鬥的樂趣。sadfasdfdsfs我手机发来撒解放垃圾收代理费洒垃圾收集奥拉夫捡垃圾拉大家上了飞机撒来得及发绿色减肥了就是福利局 爱睡懒觉疯狂拉升解放路口时间阿法拉上来看风景撒开了积分拉进来就 记录卡圣诞节疯狂拉丝机风口浪尖洒到了法律经理刷卡机发神经了房价爱丽丝圣诞快乐解放路卡时间风口浪尖奥斯卡了卡卡借楼房吉安快乐圣诞节快乐就是卡拉分开了角度看垃圾点击阿卡丽</p>"
+        let htmlStr = "<p><b>重要：&nbsp;<a href=\"https://www.ispokemongoavailableyet.com/\">點擊查看最新可以遊玩的國家地區</a>（非官方）；本遊戲需Android 4.4或以上系統才可安裝。</b><br></p><p><br></p><p>「Pokémon GO」是Pokémon誕生二十週年的紀念作，由「Ingress」的開發商Niantic Labs提供的地理位置服務技術，使得玩家可以在現實的世界中，體驗到抓捕、交換、和用神奇寶貝戰鬥的樂趣。</p>"
         let data: Data? = htmlStr.data(using: String.Encoding.utf8)
         let attrString = NSAttributedString(htmlData: data,options: createCoreTextOptions(), documentAttributes: nil)
         
